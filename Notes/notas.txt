@@ -1,0 +1,18 @@
+                    📈 Tipos de gráficos mais comuns
+| Tipo              | `kind` em `plot()`  | Uso Comum                                 |
+| ----------------- | ------------------- | ----------------------------------------- |
+| 📊 **Barra**      | `'bar'`             | Comparar categorias (ex: vendas por loja) |
+| 📉 **Linha**      | `'line'` *(padrão)* | Evolução ao longo do tempo                |
+| 🟠 **Dispersão**  | `'scatter'`         | Relação entre duas variáveis              |
+| 🥧 **Pizza**      | `'pie'`             | Proporções (ex: participação de mercado)  |
+| 📦 **Boxplot**    | `'box'`             | Distribuição e detecção de outliers       |
+| 🟪 **Histograma** | `'hist'`            | Frequência de valores contínuos           |
+| 🔳 **Área**       | `'area'`            | Acúmulo de valores ao longo do tempo      |
+
+🧠 Dicas Úteis para Visualizações
+
+✅ Use groupby() para resumir os dados antes de criar gráficos.
+
+✅ Use sort_values() para ordenar os dados de forma mais clara.
+
+✅ Use plt.figure(figsize=(x, y)) para definir o tamanho do gráfico.

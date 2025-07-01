@@ -1,0 +1,91 @@
+
+📊 Introdução à Criação de Gráficos em Python
+
+//
+1. Bibliotecas Essenciais
+python
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+matplotlib.pyplot: Biblioteca base para plotagem (como "pincel digital")
+
+seaborn: Melhora a estética dos gráficos e simplifica comandos (como "decorador")
+
+pandas: Para trabalhar com dados tabulares (DataFrames)
+
+
+//
+2. Seu Primeiro Gráfico (Linha Simples)
+python
+# Dados de exemplo
+anos = [2015, 2016, 2017, 2018, 2019]
+vendas = [200, 350, 500, 420, 600]
+
+# Criar figura e eixos
+plt.figure(figsize=(10, 5))  # Tamanho da figura (largura, altura)
+
+# Plotar dados
+plt.plot(anos, vendas, 
+         marker='o',        # Formato dos pontos
+         linestyle='--',    # Estilo da linha
+         color='purple',    # Cor da linha
+         linewidth=2)       # Espessura
+
+# Customização
+plt.title("Crescimento de Vendas 📈", fontsize=14)  # Título
+plt.xlabel("Anos")                                  # Eixo X
+plt.ylabel("Vendas (R$ mil)")                      # Eixo Y
+plt.grid(True, alpha=0.3)                          # Grade suave
+
+# Exibir
+plt.show()
+
+//
+3. Elementos-Chave Explicados
+a. Tipos de Gráficos Comuns
+Linha: plt.plot() → Tendências temporais
+
+Barras: plt.bar() → Comparação entre categorias
+
+Histograma: plt.hist() → Distribuição de dados
+
+Pizza: plt.pie() → Proporções (use com moderação!)
+
+b. Customização Básica
+python
+plt.style.use('ggplot')  # Estilo pré-definido (try: 'seaborn', 'fivethirtyeight')
+plt.xticks(rotation=45)  # Girar labels do eixo X
+plt.legend()             # Mostrar legenda
+plt.tight_layout()       # Ajuste automático de espaçamento
+
+//
+4. Gráfico Avançado com Seaborn
+python
+# Dados de exemplo (DataFrame)
+dados = pd.DataFrame({
+    'Mês': ['Jan', 'Fev', 'Mar', 'Abr'],
+    'Produto A': [30, 45, 12, 67],
+    'Produto B': [24, 62, 30, 55]
+})
+
+# Derreter o DataFrame para formato longo
+dados_melt = dados.melt(id_vars='Mês', var_name='Produto', value_name='Vendas')
+
+# Criar gráfico de barras agrupadas
+sns.barplot(x='Mês', 
+            y='Vendas', 
+            hue='Produto',  # Agrupamento por cores
+            data=dados_melt,
+            palette='viridis')  # Paleta de cores
+
+plt.title("Vendas Mensais por Produto")
+plt.ylabel("Vendas (unidades)")
+plt.legend(title='Produtos', loc='upper left')
+plt.show()
+
+//
+5. Salvando Seu Gráfico
+python
+plt.savefig('meu_grafico.png', 
+           dpi=300,          # Resolução
+           bbox_inches='tight')  # Eliminar bordas em branco
