@@ -1,0 +1,3 @@
+iniciar dash no localhost: 
+
+streamlit run dashboard.py --server.port 8502
