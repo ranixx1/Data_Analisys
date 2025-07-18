@@ -1,3 +1,25 @@
 iniciar dash no localhost: 
 
 streamlit run dashboard.py --server.port 8502
+
+
+teste para saber o diretorio:
+
+try:
+    df = pd.read_csv("/home/ranilton/Área de Trabalho/Data_Analisys/data/SATS_PESQ.csv")
+    st.title("Tabela de Dados SATS_PESQ")
+    st.dataframe(df)
+    st.write(f"Dados carregados com sucesso! Número de linhas: {len(df)}")
+    if df.empty:
+        st.warning("O DataFrame está vazio, mesmo após ser carregado.")
+except FileNotFoundError:
+    st.error("ERRO: O arquivo 'SATS_PESQ.csv' não foi encontrado.")
+    st.write("Caminho absoluto que o script tentou acessar:", os.path.abspath("../data/SATS_PESQ.csv"))
+    st.write("Verifique se o arquivo está em `Trabalho_De_Analise_Dados/data/SATS_PESQ.csv`.")
+except pd.errors.EmptyDataError:
+    st.error("ERRO: O arquivo CSV está vazio ou contém apenas cabeçalhos.")
+except pd.errors.ParserError:
+    st.error("ERRO: O arquivo CSV está mal formatado e o pandas não conseguiu lê-lo.")
+    st.write("Tente abrir o arquivo em um editor de texto para verificar sua estrutura.")
+except Exception as e:
+    st.error(f"Ocorreu um erro inesperado ao carregar o arquivo: {e}")
