@@ -126,13 +126,6 @@ df = load_data()
 # 🎯 CABEÇALHO PRINCIPAL
 st.markdown('<h1 class="main-header">📊 CSAT Analytics Dashboard</h1>', unsafe_allow_html=True)
 
-# 🎛️ SIDEBAR COM FILTROS MODERNOS
-st.sidebar.markdown("""
-<div class="filter-container">
-    <h2 style="text-align: center; margin: 0;">🔍 Filtros Inteligentes</h2>
-</div>
-""", unsafe_allow_html=True)
-
 with st.sidebar:
     with st.expander("📅 Filtros Temporais", expanded=True):
         col_data1, col_data2 = st.columns(2)
