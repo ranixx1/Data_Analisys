@@ -14,13 +14,13 @@ st.set_page_config(
     page_icon="📊"
 )
 
-# 🎨 CSS CUSTOMIZADO PARA ESTILIZAÇÃO
+# 🎨 CSS CUSTOMIZADO PARA ESTILIZAÇÃO - TEMA AZUL E VERDE
 st.markdown("""
 <style>
     .main-header {
         font-size: 3rem;
         font-weight: 700;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(90deg, #1e3c72 0%, #2a5298 50%, #10a37f 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-align: center;
@@ -28,19 +28,21 @@ st.markdown("""
     }
     
     .metric-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         padding: 1rem;
         border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 15px rgba(30,60,114,0.3);
         color: white;
         text-align: center;
         margin: 0.5rem 0;
+        border: 1px solid rgba(255,255,255,0.1);
     }
     
     .metric-value {
         font-size: 2.5rem;
         font-weight: bold;
         margin: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
     .metric-label {
@@ -50,33 +52,47 @@ st.markdown("""
     }
     
     .filter-container {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2563eb 100%);
         padding: 1rem;
         border-radius: 15px;
         margin-bottom: 1rem;
         color: white;
+        box-shadow: 0 4px 15px rgba(30,60,114,0.3);
     }
     
     .insights-box {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        background: linear-gradient(135deg, #0891b2 0%, #10a37f 100%);
         padding: 1.5rem;
         border-radius: 15px;
         color: white;
         margin: 1rem 0;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 15px rgba(8,145,178,0.3);
+        border: 1px solid rgba(255,255,255,0.1);
     }
     
     .kpi-card {
-        background: white;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         padding: 1.5rem;
         border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        border-left: 5px solid #667eea;
+        box-shadow: 0 4px 15px rgba(30,60,114,0.1);
+        border-left: 5px solid #1e3c72;
+        border-top: 1px solid #10a37f;
         margin: 0.5rem 0;
+        color: #1e3c72;
     }
     
     .sidebar .sidebar-content {
-        background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(180deg, #1e3c72 0%, #10a37f 100%);
+    }
+    
+    /* Customização adicional */
+    .stSelectbox > div > div {
+        background-color: rgba(255,255,255,0.95);
+        border: 2px solid #10a37f;
+    }
+    
+    .stSlider > div > div > div {
+        color: #1e3c72;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -115,12 +131,30 @@ st.sidebar.markdown("""
 
 with st.sidebar:
     with st.expander("📅 Filtros Temporais", expanded=True):
-        data_range = st.date_input(
-            "Período de Análise",
-            value=(df['DATA'].min(), df['DATA'].max()),
-            min_value=df['DATA'].min(),
-            max_value=df['DATA'].max()
-        )
+        col_data1, col_data2 = st.columns(2)
+        
+        with col_data1:
+            data_inicio = st.date_input(
+                "📅 Data Início",
+                value=df['DATA'].min(),
+                min_value=df['DATA'].min(),
+                max_value=df['DATA'].max(),
+                help="Selecione a data inicial para análise"
+            )
+        
+        with col_data2:
+            data_fim = st.date_input(
+                "📅 Data Fim",
+                value=df['DATA'].max(),
+                min_value=df['DATA'].min(),
+                max_value=df['DATA'].max(),
+                help="Selecione a data final para análise"
+            )
+        
+        # Mostrar período selecionado
+        if data_inicio and data_fim:
+            dias = (data_fim - data_inicio).days + 1
+            st.info(f"📊 Período: {dias} dia(s) selecionado(s)")
     
     with st.expander("🎯 Filtros por Categoria", expanded=True):
         tipos_selecionados = st.multiselect(
@@ -148,10 +182,10 @@ with st.sidebar:
         )
 
 # 🔍 APLICANDO FILTROS
-if len(data_range) == 2:
+if data_inicio and data_fim:
     df_filtrado = df[
-        (df['DATA'] >= pd.to_datetime(data_range[0])) &
-        (df['DATA'] <= pd.to_datetime(data_range[1])) &
+        (df['DATA'] >= pd.to_datetime(data_inicio)) &
+        (df['DATA'] <= pd.to_datetime(data_fim)) &
         (df['TYPE'].isin(tipos_selecionados)) &
         (df['TCSAT'] >= tcsat_range[0]) &
         (df['TCSAT'] <= tcsat_range[1]) &
@@ -260,14 +294,14 @@ with col_g1:
         name='TCSAT',
         x=media_por_tipo['TYPE'],
         y=media_por_tipo['TCSAT'],
-        marker_color='rgba(102, 126, 234, 0.8)',
+        marker_color='rgba(30, 60, 114, 0.8)',
         hovertemplate='<b>%{x}</b><br>TCSAT: %{y:.2f}<extra></extra>'
     ))
     fig1.add_trace(go.Bar(
         name='DCSAT',
         x=media_por_tipo['TYPE'],
         y=media_por_tipo['DCSAT'],
-        marker_color='rgba(118, 75, 162, 0.8)',
+        marker_color='rgba(16, 163, 127, 0.8)',
         hovertemplate='<b>%{x}</b><br>DCSAT: %{y:.2f}<extra></extra>'
     ))
     
@@ -294,7 +328,7 @@ with col_g2:
         names='TYPE',
         values='Quantidade',
         hole=0.5,
-        color_discrete_sequence=px.colors.qualitative.Set3,
+        color_discrete_sequence=['#1e3c72', '#2a5298', '#10a37f', '#0891b2', '#065f46', '#1e40af'],
         title="🎯 Distribuição por Tipo de Atendimento"
     )
     fig2.update_traces(
@@ -320,14 +354,14 @@ with col_g3:
         x=df_filtrado['TCSAT'],
         name='TCSAT',
         opacity=0.7,
-        marker_color='rgba(102, 126, 234, 0.8)',
+        marker_color='rgba(30, 60, 114, 0.8)',
         nbinsx=11
     ))
     fig3.add_trace(go.Histogram(
         x=df_filtrado['DCSAT'],
         name='DCSAT',
         opacity=0.7,
-        marker_color='rgba(118, 75, 162, 0.8)',
+        marker_color='rgba(16, 163, 127, 0.8)',
         nbinsx=11
     ))
     
@@ -352,16 +386,16 @@ with col_g4:
         y=evolucao['TCSAT'],
         mode='lines+markers',
         name='TCSAT',
-        line=dict(color='rgba(102, 126, 234, 1)', width=3),
-        marker=dict(size=8, color='rgba(102, 126, 234, 1)')
+        line=dict(color='rgba(30, 60, 114, 1)', width=3),
+        marker=dict(size=8, color='rgba(30, 60, 114, 1)')
     ))
     fig4.add_trace(go.Scatter(
         x=evolucao['DATA'],
         y=evolucao['DCSAT'],
         mode='lines+markers',
         name='DCSAT',
-        line=dict(color='rgba(118, 75, 162, 1)', width=3),
-        marker=dict(size=8, color='rgba(118, 75, 162, 1)')
+        line=dict(color='rgba(16, 163, 127, 1)', width=3),
+        marker=dict(size=8, color='rgba(16, 163, 127, 1)')
     ))
     
     fig4.update_layout(
@@ -389,7 +423,7 @@ with col_g5:
         size=[1]*len(df_filtrado),
         hover_data=['ID', 'DATA'],
         title="🔍 Correlação entre TCSAT e DCSAT",
-        color_discrete_sequence=px.colors.qualitative.Set2
+        color_discrete_sequence=['#1e3c72', '#2a5298', '#10a37f', '#0891b2', '#065f46', '#1e40af']
     )
     fig5.update_layout(
         template='plotly_white',
@@ -414,6 +448,4 @@ with col_insights:
             <p><strong>📊 Amostras Analisadas:</strong> {len(df_filtrado)}</p>
         </div>
         """, unsafe_allow_html=True)
-
-# RODAPÉ COM INFORMAÇÕES
 
