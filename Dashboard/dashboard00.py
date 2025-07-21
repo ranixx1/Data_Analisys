@@ -17,6 +17,10 @@ st.set_page_config(
 # 🎨 CSS CUSTOMIZADO PARA ESTILIZAÇÃO - TEMA AZUL E VERDE
 st.markdown("""
 <style>
+    .st-ct {
+        background-color: #2a5298; important!
+    }  
+    }
     .main-header {
         font-size: 3rem;
         font-weight: 700;
