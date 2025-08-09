@@ -1,6 +1,7 @@
 <center>
-<h1>Aula 1 - Alura imersão de dados com python</h1>
-<h2>Comandos utilizados</h2>
+
+# Aula 1 - Alura imersão de dados com python</h1>
+
 </center>
 
 <h4> Importar uma biblioteca</h4>
@@ -91,4 +92,17 @@ df['senioridade'].value_counts()
 
 ```python
 df.describe(include='object')
-´´´
+
+```
+<center>
+
+# Aula 2- Limpeza de dados e preparação
+
+</center>
+
+<h4> Verificar as tabelas se são nulas</h4>
+
+```python
+df.isnull()
+
+```
