@@ -160,3 +160,16 @@ df_temperaturas['Preenchido_bfill'] = df_temperaturas['Temperatura']bffill()
 df_temperaturas
 
 ```
+
+<center><h4>Exemplo 3</h4><h5>usando a substituição por um valor definido <h3>método fillna('valor')</h3></h5></center>
+
+```python
+df_cidades = pd.DataFrame({
+    'nome':['Ranilton','André','Ramon','Agenor','Geraldo'],
+    'cidade':['São Paulo',np.nan,'Rio de Janeiro',np.nan,'Parnamirim']
+})
+
+df_cidades['cidade_preenchida'] = df_cidades['cidade'].fillna('Não informado')
+df_cidades
+
+```
