@@ -61,4 +61,31 @@ name_dicionario = {
 df.rename(columns=name_dicionario, inplace = True)
 df.head()
 ```
+<h4>Mostrar dados de uma coluna</h4>
 
+```
+df['name_colunm'].value_counts()
+```
+<h4> Renomear categorias</h4>
+
+```
+name_dicionario = {
+    'name_category'{
+        'coluna_name_anterior' : 'coluna_name_novo',
+        'coluna2_name_anterior' :'coluna2_name_novo'
+    },
+}
+```
+
+<h5>Aplicando renomeação</h5>
+
+```
+
+df['senioridade']=df['senioridade'].replace(renomear_categorias_senioridade['senioridade'])
+df['senioridade'].value_counts()
+```
+<h4> Descrição geral das categorias </h4>
+
+```
+df.describe(include='object')
+´´´
