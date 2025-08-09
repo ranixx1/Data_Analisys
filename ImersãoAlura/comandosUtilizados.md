@@ -105,4 +105,8 @@ df.describe(include='object')
 ```python
 df.isnull()
 
+#exemplo de como utilizar
+
+df.isnull().sum() # soma todas as linhas null por categoria
+
 ```
