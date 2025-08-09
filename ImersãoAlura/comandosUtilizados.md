@@ -19,7 +19,7 @@ df = pd.read_csv('LINK PARA O DOCUMENTO')
 <h4> Mostrar as 5 primeiras linhas </h4>
 
 ```python
-df.head() #todo método precisa ter ()
+df.head()
 ```
 
 <h4> Mostrar informações gerais do dataframe</h4>
