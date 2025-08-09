@@ -126,6 +126,8 @@ import numpy as pd # importar numpy, que manipula dados
 df_salarios = pd.DataFrame[{
     'nome':['Ranilton','André','Ramon','Agenor'],
     'salario':[4000,np.nan,5000,np.nan] #np.nun deixa o valor como nulo
+# calcula a média salarial e substitui os nulos pela média e arredonda valores
+df_salarios['salario_media'] = df_salarios['salario'].fillna(df_salarios['salario'].mean().round(2))
 }]
 
 ```
