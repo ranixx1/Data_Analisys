@@ -128,6 +128,8 @@ df_salarios = pd.DataFrame[{
     'salario':[4000,np.nan,5000,np.nan] #np.nun deixa o valor como nulo
 # calcula a média salarial e substitui os nulos pela média e arredonda valores
 df_salarios['salario_media'] = df_salarios['salario'].fillna(df_salarios['salario'].mean().round(2))
+# Calcula a mediana e substitui os nulos pela mediana
+df_salarios['salario_mediana'] = df_salarios['salario'].fillna(df_salarios['salario'].median())
 }]
 
 ```
