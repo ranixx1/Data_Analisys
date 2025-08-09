@@ -173,3 +173,7 @@ df_cidades['cidade_preenchida'] = df_cidades['cidade'].fillna('Não informado')
 df_cidades
 
 ```
+
+[] = acessar uma coluna especifica
+{} = criação de um dicionário
+() = chamada de funções
