@@ -1,6 +1,6 @@
 <center>
 
-# Aula 1 - Alura imersão de dados com python</h1>
+# Aula 1 - introdução de dados com python</h1>
 
 </center>
 
