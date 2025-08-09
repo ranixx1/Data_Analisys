@@ -122,8 +122,10 @@ df.[df.isnull().any(axis=1)]
 <h4> Criar um dataframe</h4>
 
 ```python
+import numpy as pd # importar numpy, que manipula dados
 df_salarios = pd.DataFrame[{
-    'nome':['Ranilton','André','Ramon','Agenor']
+    'nome':['Ranilton','André','Ramon','Agenor'],
+    'salario':[4000,np.nan,5000,np.nan] #np.nun deixa o valor como nulo
 }]
 
 ```
