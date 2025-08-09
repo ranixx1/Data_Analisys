@@ -194,7 +194,12 @@ df_limpo = df_limpo.assign(ano = df_limpo['ano'].astype('int64'))
 df_limpo.info()
 
 ```
+<div style="background-color:#E3F2FD; border-left: 6px solid #2196F3; padding: 15px; margin: 15px 0;">
+<p>💡 <strong>Lembrete de Sintaxe</strong></p>
+<center>
 
-[] = acessar uma coluna especifica
-{} = criação de um dicionário
-() = chamada de funções
+```txt
+[ ]  =  Acessar um item ou coluna
+{ }  =  Criar um dicionário
+( )  =  Chamar uma função
+```
