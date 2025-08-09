@@ -148,3 +148,15 @@ df_temperaturas['Preenchido_ffill'] = df_temperaturas['Temperatura'].ffill()
 df_temperaturas
 
 ```
+
+<center><h4>Exemplo 2</h4><h5>usando a substituição pelo próximo valor <h3>método bfill()</h3></h5></center>
+
+```python
+df_temperaturas = pd.DataFrame({
+    'Dia': ['segunda','Terça','Quarta','Quinta','Sexta','Sabádo','Domingo'],
+    'Temperatura': [30,30,np.nan,np.nan,28,np.nan,27]
+})
+df_temperaturas['Preenchido_bfill'] = df_temperaturas['Temperatura']bffill()
+df_temperaturas
+
+```
