@@ -118,3 +118,12 @@ df.['tabela'].unique()
 df.[df.isnull().any(axis=1)]
 
 ```
+
+<h4> Criar um dataframe</h4>
+
+```python
+df_salarios = pd.DataFrame[{
+    'nome':['Ranilton','André','Ramon','Agenor']
+}]
+
+```
