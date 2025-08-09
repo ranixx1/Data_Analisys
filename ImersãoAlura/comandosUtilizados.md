@@ -119,7 +119,11 @@ df.[df.isnull().any(axis=1)]
 
 ```
 
+<center>
 <h4> Criar um dataframe</h4>
+<h5>Prenencher os valores com a média e com a mediana</h5>
+<h3>método fillna()</h3>
+
 
 ```python
 import numpy as pd # importar numpy, que manipula dados
@@ -131,5 +135,16 @@ df_salarios['salario_media'] = df_salarios['salario'].fillna(df_salarios['salari
 # Calcula a mediana e substitui os nulos pela mediana
 df_salarios['salario_mediana'] = df_salarios['salario'].fillna(df_salarios['salario'].median())
 }]
+
+```
+<center><h4>Exemplo 2</h4><h5>usando a substituição pelo valor anterior <h3>método ffill()</h3></h5></center>
+
+```python
+df_temperaturas = pd.DataFrame({
+    'Dia': ['segunda','Terça','Quarta','Quinta','Sexta','Sabádo','Domingo'],
+    'Temperatura': [30,30,np.nan,np.nan,28,np.nan,27]
+})
+df_temperaturas['Preenchido_ffill'] = df_temperaturas['Temperatura'].ffill()
+df_temperaturas
 
 ```
