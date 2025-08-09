@@ -174,6 +174,16 @@ df_cidades
 
 ```
 
+<center><h4>Remover dados null</h4><h5>criando uma nova variável df_limpo <h3>método dropna(')</h3></h5></center>
+
+```python
+df_limpo = df.dropna()
+#verificando se limpou dados null
+
+df_limpo.isnull().sum()
+
+```
+
 [] = acessar uma coluna especifica
 {} = criação de um dicionário
 () = chamada de funções
