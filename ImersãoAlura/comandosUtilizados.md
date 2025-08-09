@@ -109,4 +109,12 @@ df.isnull()
 
 df.isnull().sum() # soma todas as linhas null por categoria
 
+#pegar valores existentes
+
+df.['tabela'].unique()
+
+#pegar apenas as tabelas com os valores null
+
+df.[df.isnull().any(axis=1)]
+
 ```
