@@ -174,13 +174,23 @@ df_cidades
 
 ```
 
-<center><h4>Remover dados null</h4><h5>criando uma nova variável df_limpo <h3>método dropna(')</h3></h5></center>
+<center><h4>Remover dados null</h4><h5>criando uma nova variável df_limpo <h3>método dropna()</h3></h5></center>
 
 ```python
 df_limpo = df.dropna()
 #verificando se limpou dados null
 
 df_limpo.isnull().sum()
+
+```
+
+<center><h4>Coverter tipo de variavél</h4><h5>alterando o tipo da variavél ano, float64 para int64 <h3>método assign()</h3></h5></center>
+
+```python
+df_limpo = df_limpo.assign(ano = df_limpo['ano'].astype(int))
+
+#verificando se a alteração foi bem-sucedida
+df_limpo.info()
 
 ```
 
